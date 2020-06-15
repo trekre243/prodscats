@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col s12 center-align">
+        <h3>@ViewBag.CatName</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <a href="/categories">Back</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col s6">
+        <h4>Products:</h4>
+        <ul>
+            @foreach(var product in ViewBag.CategoryAssociations)
+            {
+                <li>@product.Product.Name</li>
+            }
+        </ul>
+    </div>
+    <div class="col s6">
+        <form action="/addproduct" method="post">
+            <input name="CategoryId" type="hidden" value="@ViewBag.CategoryId">
+            <div class="input-field col s12">
+                <p>Product</p>
+                <select name="ProductId" class="browser-default">
+                    @foreach(var product in ViewBag.ChooseProducts)
+                    {
+                        <option value="@product.ProductId">@product.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="input-field col s12">
+                <button type="submit" class="waves-effect waves-light btn">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
